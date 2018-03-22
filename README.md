@@ -1,2 +1,4 @@
 # discuz-colorful-font
-Discuz 使你的字体五颜六色👏🏻
+
+<a target="_blank" href="https://yeuk.github.io/discuz-colorful-font/">https://yeuk.github.io/discuz-colorful-font/</a>
+

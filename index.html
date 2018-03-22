@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>使你的 Discuz 帖子字体五颜六色👏 | wilon.github.io</title>
+        <link href="https://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+        <style type="text/css">
+        body {font-size: 18px; font-family: "微软雅黑","Arial Narrow",HELVETICA;} td {padding: 10px;} img {width: 120px;} .bs-docs-header, .bs-docs-masthead {position: relative; padding: 30px 0; color: #cdbfe3; text-shadow: 0 1px 0 rgba(0,0,0,.1); background-color: #6f5499; background-image: -webkit-gradient(linear,left top,left bottom,from(#563d7c),to(#6f5499)); background-image: -webkit-linear-gradient(top,#563d7c 0,#6f5499 100%); background-image: -o-linear-gradient(top,#563d7c 0,#6f5499 100%); background-image: linear-gradient(to bottom,#563d7c 0,#6f5499 100%); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#563d7c', endColorstr='#6F5499', GradientType=0); background-repeat: repeat-x; } .bs-docs-header{margin-bottom:40px;font-size:20px}.bs-docs-header h1{margin-top:0;color:#fff}.bs-docs-header p{margin-bottom:0;font-weight:300;line-height:1.4}.bs-docs-header .container{position:relative}.bs-docs-footer {padding-top: 40px; padding-bottom: 40px; margin-top: 100px; color: #777; text-align: center; border-top: 1px solid #e5e5e5; }
+        </style>
+    </head>
+    <body>
+        <div class="bs-docs-header">
+            <div class="container">
+                <img src="./icon.png" style="width: 42px;">
+                使你的 Discuz 帖子字体五颜六色👏
+                <a href="https://github.com/yeuk/discuz-colorful-font" style="float: right; color: white;">Fork me on Github</a>
+            </div>
+        </div>
+        <div class="container">
+            <div class="col-md-10">
+                <form><textarea class="form-control" rows="8" id="dz-text" placeholder="这里粘贴内容..."></textarea></form>
+                <br>
+                <div class="col-md-3 col-md-offset-3"></div>
+                <div class="col-md-3 col-md-offset-3">
+                    <button type="button" class="btn btn-primary" id="dz-text-submit" disabled="disabled">
+                    &nbsp;&nbsp;&nbsp;Loading...&nbsp;&nbsp;&nbsp;
+                    </button>
+                </div>
+            </div>
+            <div class="col-md-10"> <br> </div>
+            <div class="col-md-10" id="dz-table" style="display: none;">
+                <table class="table table-bordered table-striped">
+                  <colgroup>
+                    <col class="col-xs-2">
+                    <col class="col-xs-7">
+                  </colgroup>
+                  <thead>
+                    <tr>
+                      <th>发帖文字<br><span style="font-size: 10px;">双击右侧，复制到论坛发帖</span></th>
+                      <th id="dz-tiezi" title="双击全选"></th>
+                    </tr>
+                    <tr>
+                      <th>预览</th>
+                      <th id="dz-preview"></th>
+                    </tr>
+                  </thead>
+                </table>
+            </div>
+        </div>
+        <footer class="bs-docs-footer" role="contentinfo">
+            <div class="container">
+                <p>by <a target="_blank" href="https://github.com/wilon">https://github.com/wilon</a></p>
+            </div>
+        </footer>
+        <script type="text/javascript" src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js" charset="utf-8"></script>
+        <script type="text/javascript">
+            $(function(){
+                $('#dz-text-submit').removeAttr('disabled').text('提交');
+                $('#dz-text').focus();
+                var color = ['Black', 'Sienna', 'DarkOliveGreen', 'DarkGreen', 'DarkSlateBlue', 'Navy', 'Indigo', 'DarkSlateGray', 'DarkRed', 'DarkOrange', 'Olive', 'Green', 'Teal', 'Blue', 'SlateGray', 'DimGray', 'Red', 'SandyBrown', 'YellowGreen', 'SeaGreen', 'MediumTurquoise', 'RoyalBlue', 'Purple', 'Gray', 'Magenta', 'Orange', 'Yellow', 'Lime', 'Cyan', 'DeepSkyBlue', 'DarkOrchid', 'Silver', 'Pink', 'Wheat', 'LemonChiffon', 'PaleGreen', 'PaleTurquoise', 'LightBlue', 'Plum', 'White'];
+                function getRandColor() {
+                    var dd = parseInt(Math.random() * color.length);
+                    return color[dd];
+                }
+                $('#dz-text-submit').on('click', function () {
+                    $('#dz-table').show();
+                    var text = $('#dz-text').val();
+                    var res = "";
+                    var prevRes = "";
+                    for (var i = 0; i < text.length; i++) {
+                        if (/\w|[\u4e00-\u9fa5]/.test(text[i])) {
+                            var cc = getRandColor();
+                            res += "[color=" + cc + "]" + text[i] + "[/color]";
+                            prevRes += "<span style='color: " + cc + "'>" + text[i] + "</span>";
+                        } else {
+                            res += text[i];
+                            prevRes += text[i];
+                        }
+                    }
+                    console.log(res)
+                    $('#dz-tiezi').html(res)
+                    $('#dz-preview').html(prevRes)
+                });
+            })
+        </script>
+    </body>
+</html>
